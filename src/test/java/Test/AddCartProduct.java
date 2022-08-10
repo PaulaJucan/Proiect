@@ -1,27 +1,15 @@
 package Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import Base.BaseTest;
+import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.concurrent.TimeUnit;
-
-public class BuyProduct{
-
-    public static void main(String[] args){
-
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver=new ChromeDriver();
-        String URL="http://automationpractice.com/index.php";
-
-
-        driver.get(URL);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+public class AddCartProduct extends BaseTest {
+@Test
+    public void buyProduct() {
 
 
         driver.findElement(By.linkText("Sign in")).click();
@@ -39,12 +27,12 @@ public class BuyProduct{
 
 
         driver.findElement(By.id("quantity_wanted")).clear();
-        driver.findElement(By.id("quantity_wanted")).sendKeys("1");
+        driver.findElement(By.id("quantity_wanted")).sendKeys("2");
 
 
         WebElement Sizedrpdwn=driver.findElement(By.xpath("//*[@id='group_1']"));
         Select oSelect=new Select(Sizedrpdwn);
-        oSelect.selectByVisibleText("L");
+        oSelect.selectByVisibleText("M");
 
 
         driver.findElement(By.id("color_11")).click();
@@ -76,8 +64,6 @@ public class BuyProduct{
         else {
             System.out.println("Order Not Successfull: Test Case Failed");
         }
-        driver.close();
 
     }
-
 }
